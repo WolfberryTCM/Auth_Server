@@ -1,7 +1,7 @@
 const express =  require('express');
 const connectDB = require('./config/db')
 // const path = require('path')
-const request = require('request')
+const cors = require('cors')
 
 const app = express();
 
@@ -11,10 +11,8 @@ connectDB();
 // Init Middleware
 app.use(express.json({extended:false}))
 
-app.use((req,res,next) => {
-  res.header('Access-Control-Allow-Origin','*');
-  next();
-})
+// Fix CORS
+app.use(cors());
 
 // Define Routes
 app.use('/api/users',require('./routes/api/users'));
