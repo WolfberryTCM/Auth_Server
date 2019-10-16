@@ -1,6 +1,7 @@
 const express =  require('express');
 const connectDB = require('./config/db')
 // const path = require('path')
+const request = require('request')
 
 const app = express();
 
@@ -9,6 +10,11 @@ connectDB();
 
 // Init Middleware
 app.use(express.json({extended:false}))
+
+app.use((req,res,next) => {
+  res.header('Access-Control-Allow-Origin','*');
+  next();
+})
 
 // Define Routes
 app.use('/api/users',require('./routes/api/users'));
