@@ -2,6 +2,16 @@
 # yarn lockfile v1
 
 
+"@tonybadguy/call-me-maybe@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@tonybadguy/call-me-maybe/-/call-me-maybe-2.1.1.tgz#0758e4528e76ab1e17aef08ff96ab3304afa001d"
+  integrity sha512-Gc7G5o5Wd5I0d3ohzoZmqb1Jowr8sGURcFmGsoqiPk2ydFjwtYXRQTb4eYoJ1dZqdBlQGHRmL5mmbiMm4Kl2/w==
+  dependencies:
+    caseless "^0.11.0"
+    error "^7.0.2"
+    small-request "^2.1.0"
+    string-template "^1.0.0"
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
@@ -274,6 +284,11 @@ capture-stack-trace@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/capture-stack-trace/-/capture-stack-trace-1.0.1.tgz#a6c0bbe1f38f3aa0b92238ecb6ff42c344d4135d"
   integrity sha512-mYQLZnx5Qt1JgB1WEiMCf2647plpGeQ2NMR/5L0HNZzGQo4fuSPnK+wjfPnKZV0aiJDgzmWqqkV/g7JD+DW0qw==
+
+caseless@^0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.11.0.tgz#715b96ea9841593cc33067923f5ec60ebda4f7d7"
+  integrity sha1-cVuW6phBWTzDMGeSP17GDr2k99c=
 
 caseless@~0.12.0:
   version "0.12.0"
@@ -618,6 +633,13 @@ end-of-stream@^1.1.0:
   integrity sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==
   dependencies:
     once "^1.4.0"
+
+error@^7.0.2:
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/error/-/error-7.2.0.tgz#80c989885635b41df9309d145834a4f125ae2245"
+  integrity sha512-M6t3j3Vt3uDicrViMP5fLq2AeADNrCVFD8Oj4Qt2MHsX0mPYG7D5XdnEfSdRpaHQzjAJ19wu+I1mw9rQYMTAPg==
+  dependencies:
+    string-template "~0.2.1"
 
 escape-html@~1.0.3:
   version "1.0.3"
@@ -2143,6 +2165,13 @@ repeat-string@^1.6.1:
   resolved "https://registry.yarnpkg.com/repeat-string/-/repeat-string-1.6.1.tgz#8dcae470e1c88abc2d600fff4a776286da75e637"
   integrity sha1-jcrkcOHIirwtYA//Sndihtp15jc=
 
+request-function@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/request-function/-/request-function-2.0.0.tgz#27aace27f871e3c2fd48a19dad75ca384c4b8654"
+  integrity sha1-J6rOJ/hx48L9SKGdrXXKOExLhlQ=
+  dependencies:
+    error "^7.0.2"
+
 request@^2.88.0:
   version "2.88.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.88.0.tgz#9c2fca4f7d35b592efe57c7f0a55e81052124fef"
@@ -2324,6 +2353,13 @@ sliced@1.0.1:
   resolved "https://registry.yarnpkg.com/sliced/-/sliced-1.0.1.tgz#0b3a662b5d04c3177b1926bea82b03f837a2ef41"
   integrity sha1-CzpmK10Ewxd7GSa+qCsD+Dei70E=
 
+small-request@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/small-request/-/small-request-2.1.0.tgz#b1015a5047ca140b0a23ab2e0403bbe8d136beb3"
+  integrity sha512-tQlteNci7wsIsmt7KoyZj0izeuY718NBeKVhJdWxTmQHKsJp4INUhWLTJ000EzNu9p41TqbGPOrSl0wroK581Q==
+  dependencies:
+    request-function "^2.0.0"
+
 snapdragon-node@^2.0.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/snapdragon-node/-/snapdragon-node-2.1.1.tgz#6c175f86ff14bdb0724563e8f3c1b021a286853b"
@@ -2409,6 +2445,16 @@ static-extend@^0.1.1:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.5.0.tgz#161c7dac177659fd9811f43771fa99381478628c"
   integrity sha1-Fhx9rBd2Wf2YEfQ3cfqZOBR4Yow=
+
+string-template@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/string-template/-/string-template-1.0.0.tgz#9e9f2233dc00f218718ec379a28a5673ecca8b96"
+  integrity sha1-np8iM9wA8hhxjsN5oopWc+zKi5Y=
+
+string-template@~0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/string-template/-/string-template-0.2.1.tgz#42932e598a352d01fc22ec3367d9d84eec6c9add"
+  integrity sha1-QpMuWYo1LQH8IuwzZ9nYTuxsmt0=
 
 string-width@^1.0.1:
   version "1.0.2"
@@ -2768,3 +2814,10 @@ yargs@^11.0.0:
     which-module "^2.0.0"
     y18n "^3.2.1"
     yargs-parser "^9.0.2"
+
+yelp-fusion@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/yelp-fusion/-/yelp-fusion-3.0.0.tgz#ae4d2b6b28072016ba18328a0aafc5b59692119f"
+  integrity sha512-Os4A0+v980W8sm4kurUpK4E0FMS5hvtA0//g7Jb9QI2gS7WfX/1Zw12S792LKt3YM/qJNow7XIR2g3bONlX/fg==
+  dependencies:
+    "@tonybadguy/call-me-maybe" "^2.1.1"
