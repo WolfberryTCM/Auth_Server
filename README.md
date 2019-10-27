@@ -8,9 +8,11 @@
   
 ### register
 
->>${root_url}/api/users
->>post
->>json: name, email, password
+>${root_url}/api/users
+
+>post
+
+>json: name, email, password
   
 ### login
 
