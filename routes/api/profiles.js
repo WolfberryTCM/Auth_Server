@@ -48,14 +48,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const {
-      name,
-      website,
-      location,
-      rating,
-      review_count,
-      services
-    } = req.body;
+    const { name, website, location, rating, review_count } = req.body;
 
     //Build profile object
     const profileFields = {};
@@ -65,9 +58,6 @@ router.post(
     if (location) profileFields.location = location;
     if (rating) profileFields.rating = rating;
     if (review_count) profileFields.review_count = review_count;
-    // if(services) {
-    //   profileFields.services = services.split(',').map(service => service.trim());
-    // }
 
     try {
       let profile = await Profile.findOne({ user: req.user.id });
@@ -149,5 +139,140 @@ router.delete('/', auth, async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+
+// @route  PUT api/profile/service
+// @desc   Add service
+// @access Private
+router.put(
+  '/service',
+  [
+    auth,
+    [
+      check('title','Title is required').not().isEmpty()
+    ]
+  ],
+  async (req,res) => {
+    const errors = validationResult(req);
+    if(!errors.isEmpty()) {
+      return res.status(400).json({
+        errors:errors.array()
+      })
+    }
+
+    const {
+      title,
+      price,
+      duration
+    } = req.body
+
+    const newService = {
+      title,price,duration
+    }
+
+    try {
+      const profile = await Profile.findOne({user:req.user.id});
+
+      profile.services.unshift(newService);
+
+      await profile.save();
+
+      res.json(profile);
+    } catch(err) {
+      console.error(err.message);
+      res.status(500).send('Server Error')
+    }
+  }
+)
+
+// @route  DELETE api/profile/service/:service_id
+// @desc   Delete service from profile
+// @access Private
+
+router.delete('/service/:service_id', auth,async(req,res)=> {
+  try {
+    const foundProfile = await Profile.findOne({user:req.user.id});
+
+    const serviceIds = foundProfile.services.map(
+      service => service._id.toString()
+    )
+    // If i don't add .toString(), it returns this wired mongoose coreArray and the ids are somehow objects and it still deletes anyway even if you put/service/5
+
+    const removeIndex = serviceIds.indexOf(req.params.service_id);
+
+    if(removeIndex === -1) {
+      return res.status(500).json({msg:"Server Error"})
+    } else {
+      // There console logs help me figure it out
+      console.log("serviceIds",serviceIds);
+      console.log("typeof serviceIds",typeof serviceIds);
+      console.log("req.params",req.params);
+      console.log("removed",serviceIds.indexOf(req.params.service_id));
+
+      foundProfile.services.splice(removeIndex,1);
+
+      await foundProfile.save();
+
+      return res.status(200).json(foundProfile);
+    }
+  }catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error')
+  }
+})
+
+// @route  PUT api/profile/staff
+// @desc   Add profile staff
+// @access Private
+router.put('/staff',[auth,[check('name','Name is required').not().isEmpty()]],async (req,res)=>{
+  const errors = validationResult(req);
+
+  if(!errors.isEmpty()) {
+    return res.status(400).json({errors:errors.array()})
+  }
+
+  const {
+    name
+  } = req.body;
+
+  const newStaff = {
+    name
+  }
+  
+  try {
+    const profile = await Profile.findOne({user:req.user.id});
+
+    profile.staffs.unshift(newStaff);
+
+    await profile.save();
+
+    res.json(profile)
+  } catch(err) {
+    console.error(err.message);
+    res.status(500).send('Server Error')
+  }
+})
+
+// @route  DELETE api/profile/staff
+// @desc   Delete profile staff
+// @access Private
+router.delete('/staff/:staff_id',auth,async (req,res)=> {
+  try {
+    const foundProfile = await Profile.findOne({user:req.user.id});
+    const staffIds = foundProfile.staffs.map(staff=>staff._id.toString());
+
+    const removeIndex = staffIds.indexOf(req.params.staff_id);
+
+    if(removeIndex === -1) {
+      return res.status(500).json({msg:"Server Error"})
+    } else {
+      foundProfile.staffs.splice(removeIndex,1);
+      await foundProfile.save();
+      return res.status(200).json(foundProfile)
+    } 
+  }catch(err) {
+      console.error(err);
+      return res.status(500).json({msg:"Server Error"})
+  }
+})
 
 module.exports = router;

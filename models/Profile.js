@@ -1,39 +1,53 @@
 const mongoose = require('mongoose');
 
 const ProfileSchema = new mongoose.Schema({
-  user:{
+  user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user'
   },
-  name:{
+  name: {
     type: String
   },
   website: {
     type: String
   },
-  location:{ 
+  location: {
     type: String
   },
-  rating:{
+  rating: {
     type: String
   },
   review_count: {
     type: String
   },
-  services:[
+  services: [
     {
-      name: {
-        type:String
+      title: {
+        type: String,
+        required:true
       },
       price: {
-        type:String
+        type: String
+      },
+      duration: {
+        type: String
       }
     }
   ],
-  date: {
-    type:Date,
-    default:Date.now
-  }
-})
 
-module.exports = Profile = mongoose.model('profile',ProfileSchema)
+  staffs:[
+    {
+      name: {
+        type: String,
+        required:true
+      }
+    }
+  ],
+
+  date: {
+    type: Date,
+    default: Date.now
+  }
+});
+
+module.exports = Profile = mongoose.model('profile', ProfileSchema);
