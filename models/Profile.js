@@ -58,6 +58,10 @@ const ProfileSchema = new mongoose.Schema({
         day: {
           type:String,
           required:true
+        },
+        check:{
+          type:Boolean,
+          require:true
         }
       }
     ],
