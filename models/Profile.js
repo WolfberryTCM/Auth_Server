@@ -44,6 +44,36 @@ const ProfileSchema = new mongoose.Schema({
     }
   ],
 
+  hours:{
+    open:[
+      {
+        start:{
+          type: String,
+          required:true
+        },
+          end: {
+          type:String,
+          required:true
+        },
+        day: {
+          type:String,
+          required:true
+        }
+      }
+    ],
+    hours_type:{
+      type: String,
+      default: "REGULAR"
+    },
+    is_open_now:{
+      type:Boolean
+    },
+    isInitial:{
+      type:Boolean,
+      default: true
+    }
+  },
+
   date: {
     type: Date,
     default: Date.now

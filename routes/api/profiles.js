@@ -48,7 +48,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, website, location, rating, review_count } = req.body;
+    const { name, website, location } = req.body;
 
     //Build profile object
     const profileFields = {};
@@ -56,8 +56,6 @@ router.post(
     if (name) profileFields.name = name;
     if (website) profileFields.website = website;
     if (location) profileFields.location = location;
-    if (rating) profileFields.rating = rating;
-    if (review_count) profileFields.review_count = review_count;
 
     try {
       let profile = await Profile.findOne({ user: req.user.id });
@@ -272,6 +270,30 @@ router.delete('/staff/:staff_id',auth,async (req,res)=> {
   }catch(err) {
       console.error(err);
       return res.status(500).json({msg:"Server Error"})
+  }
+})
+
+// @route  POST api/profile/hours
+// @desc   Update profile hours
+// @access Private
+router.post('/hours',auth, async (req,res)=> {
+  try{
+    const {hours} = req.body;
+    let profileField = {};
+    profileField.user = req.user.id;
+    if(hours) profileField.hours = hours;
+
+    let profile = await Profile.findOneAndUpdate(
+      {user:req.user.id},
+      {$set:profileField},
+      {
+        new:true
+      }
+    )
+    res.json(profile)  
+  } catch(err) {
+    console.error(err.message);
+    res.status(500).json('Server Error')
   }
 })
 
