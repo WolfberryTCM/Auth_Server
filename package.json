@@ -10,10 +10,12 @@
   "author": "Qi Zhang",
   "license": "MIT",
   "dependencies": {
+    "algoliasearch": "^3.35.1",
     "bcryptjs": "^2.4.3",
     "config": "^3.2.3",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-ip": "^1.0.3",
     "express-validator": "^6.2.0",
     "gravatar": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
