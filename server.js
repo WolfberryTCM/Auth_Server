@@ -28,9 +28,7 @@ app.use('/api/yelp',require('./routes/api/yelp'))
 
 app.get('/',(req,res) => {
   const ipInfo = req.ipInfo;
-  const message = `Hey, you are browsing from ${ipInfo.city}, ${ipInfo.country}`;
-  console.log(message)
-  res.send(message);
+  res.send(ipInfo);
 })
 
 // Serve static assets in production
