@@ -16,7 +16,7 @@ const searchRequest =
 router.post('/',async (req,res) => {
   try {
     const data = await client.search(req.body);
-    res.json(data.jsonBody.businesses);
+    res.json(data.jsonBody);
   } catch (err) {
     res.status(500).send('Server Error')
   }

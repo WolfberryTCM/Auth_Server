@@ -17,10 +17,12 @@
     "express": "^4.17.1",
     "express-ip": "^1.0.3",
     "express-validator": "^6.2.0",
+    "googleapis": "^44.0.0",
     "gravatar": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.5",
     "nodemon": "^1.19.3",
+    "pg": "^7.12.1",
     "request": "^2.88.0",
     "yelp-fusion": "^3.0.0"
   }
