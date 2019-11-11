@@ -27,7 +27,7 @@ router.post(
        // 400 bad request
     }
 
-    const {name,email,password} = req.body;
+    const {name,email,isDoctor,password} = req.body;
 
     try {
      // See if user exists
@@ -48,6 +48,7 @@ router.post(
      user = new User({
        name,
        email,
+       isDoctor,
        avatar,
        password
      })

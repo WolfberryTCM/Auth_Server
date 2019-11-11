@@ -24,6 +24,11 @@ const UserSchema = new mongoose.Schema({
   avatar:{
     type: String
   },
+  isDoctor: {
+    type: Boolean,
+    required:true,
+    default: false
+  },
   date: {
     type: Date,
     default: Date.now
