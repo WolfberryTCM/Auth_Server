@@ -37,13 +37,16 @@ const ProfileSchema = new mongoose.Schema({
 
   staffs:[
     {
-      email: {
+      name :{
         type: String,
         required:true
+      },
+      email: {
+        type: String
       }
     }
   ],
-
+  
   hours:{
     open:[
       {
@@ -77,6 +80,30 @@ const ProfileSchema = new mongoose.Schema({
       default: true
     }
   },
+
+  appointments: [
+    {
+    user:{
+      type:mongoose.Schema.Types.ObjectId,
+      ref:'user'
+    },
+    service:{
+      type:String,
+      required:true
+    },
+    date: {
+      type:Date,
+      required:true
+    },
+    duration:{
+      type:Number,
+      required:true
+    },
+    create_at: {
+      type:Date,
+      default:Date.now
+    }
+  }],
 
   date: {
     type: Date,
