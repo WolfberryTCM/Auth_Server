@@ -32,7 +32,34 @@ const UserSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  appointments: [{
+    user:{
+      type:mongoose.Schema.Types.ObjectId,
+      ref:'user'
+    },
+    email : {
+      type:String,
+      required:true
+    },
+    service:{
+      type:String,
+      required:true
+    },
+    date: {
+      type:Date,
+      required:true
+    },
+    duration:{
+      type:Number,
+      required:true
+    },
+    create_at: {
+      type:Date,
+      default:Date.now
+    }
   }
+],
 })
 
 module.exports = User = mongoose.model('user', UserSchema)

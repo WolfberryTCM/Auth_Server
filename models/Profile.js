@@ -20,6 +20,7 @@ const ProfileSchema = new mongoose.Schema({
   review_count: {
     type: String
   },
+
   services: [
     {
       title: {
@@ -46,7 +47,7 @@ const ProfileSchema = new mongoose.Schema({
       }
     }
   ],
-  
+
   hours:{
     open:[
       {
@@ -81,29 +82,29 @@ const ProfileSchema = new mongoose.Schema({
     }
   },
 
-  appointments: [
-    {
-    user:{
-      type:mongoose.Schema.Types.ObjectId,
-      ref:'user'
-    },
-    service:{
-      type:String,
-      required:true
-    },
-    date: {
-      type:Date,
-      required:true
-    },
-    duration:{
-      type:Number,
-      required:true
-    },
-    create_at: {
-      type:Date,
-      default:Date.now
+  appointments: [{
+      user:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'user'
+      },
+      service:{
+        type:String,
+        required:true
+      },
+      date: {
+        type:Date,
+        required:true
+      },
+      duration:{
+        type:Number,
+        required:true
+      },
+      create_at: {
+        type:Date,
+        default:Date.now
+      }
     }
-  }],
+  ],
 
   date: {
     type: Date,

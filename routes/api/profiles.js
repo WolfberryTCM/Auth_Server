@@ -10,7 +10,6 @@ const User = require('../../models/User');
 // @route  GET api/profile/me
 // @desc   Get current users profile
 // @access Private
-
 router.get('/me', auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({ user: req.user.id }).populate(
@@ -32,7 +31,6 @@ router.get('/me', auth, async (req, res) => {
 // @route  POST api/profile
 // @desc   Create or update user profile
 // @access Private
-
 router.post(
   '/',
   [
@@ -122,7 +120,6 @@ router.get('/user/:user_id', async (req, res) => {
 // @route  DELETE api/profile
 // @desc   Delete profile, user & posts
 // @access Private
-
 router.delete('/', auth, async (req, res) => {
   try {
     // @todo - remove users posts
@@ -186,7 +183,6 @@ router.put(
 // @route  DELETE api/profile/service/:service_id
 // @desc   Delete service from profile
 // @access Private
-
 router.delete('/service/:service_id', auth,async(req,res)=> {
   try {
     const foundProfile = await Profile.findOne({user:req.user.id});
@@ -274,27 +270,36 @@ router.delete('/staff/:staff_id',auth,async (req,res)=> {
   }
 })
 
-// @route  POST api/profile/hours
-// @desc   Update profile hours
+// @route  PUT api/profile/appointment
+// @desc   Add profile appointment
 // @access Private
-router.post('/hours',auth, async (req,res)=> {
-  try{
-    const {hours} = req.body;
-    let profileField = {};
-    profileField.user = req.user.id;
-    if(hours) profileField.hours = hours;
+router.put('/appointment',[auth,[check('email','Email is required').not().isEmpty(),check('service','Service is required').not().isEmpty(),check('date','Date is required'),check('duration','Duration is required')]],async (req,res)=>{
 
-    let profile = await Profile.findOneAndUpdate(
-      {user:req.user.id},
-      {$set:profileField},
-      {
-        new:true
-      }
-    )
-    res.json(profile)  
+  const errors = validationResult(req);
+
+  if(!errors.isEmpty()) {
+    return res.status(400).json({errors:errors.array()})
+  }
+
+  const {
+    email,service,date,duration,
+  } = req.body;
+
+  const newAppointment = {
+    email,service,date,duration
+  }
+  
+  try {
+    const profile = await Profile.findOne({user:req.user.id});
+
+    profile.appointments.unshift(newAppointment);
+
+    await profile.save();
+
+    res.json(profile)
   } catch(err) {
     console.error(err.message);
-    res.status(500).json('Server Error')
+    res.status(500).send('Server Error')
   }
 })
 

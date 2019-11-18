@@ -25,6 +25,7 @@ app.use('/api/auth',require('./routes/api/auth'));
 app.use('/api/profile',require('./routes/api/profiles'));
 app.use('/api/posts',require('./routes/api/posts'));
 app.use('/api/yelp',require('./routes/api/yelp'));
+app.use('/api/appointment',require('./routes/api/appointment'))
 
 app.get('/',(req,res) => {
   const ipInfo = req.ipInfo;
