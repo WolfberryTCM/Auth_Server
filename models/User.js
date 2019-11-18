@@ -1,13 +1,10 @@
 const mongoose = require('mongoose')
 
 const UserSchema = new mongoose.Schema({
-  // firstName : {
-  //   type: String,
-  //   required: true
-  // },
-  // lastName: {
-  //   type: String,
-  // }
+  clinic : {
+    type: mongoose.Schema.Types.ObjectId,
+    ref:'clinic'
+  },
   name: {
     type: String,
     required: true
@@ -24,9 +21,12 @@ const UserSchema = new mongoose.Schema({
   avatar:{
     type: String
   },
-  isDoctor: {
-    type: Boolean,
-    required:true,
+  isDoctor:{
+    type:Boolean,
+    default:false
+  },
+  isManager: {
+    type:Boolean,
     default: false
   },
   date: {

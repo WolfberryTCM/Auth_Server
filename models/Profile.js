@@ -37,7 +37,7 @@ const ProfileSchema = new mongoose.Schema({
 
   staffs:[
     {
-      name: {
+      email: {
         type: String,
         required:true
       }
