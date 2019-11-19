@@ -218,7 +218,7 @@ router.delete('/service/:service_id', auth,async(req,res)=> {
 // @route  PUT api/profile/staff
 // @desc   Add profile staff
 // @access Private
-router.put('/staff',[auth,[check('name','Name is required').not().isEmpty()]],async (req,res)=>{
+router.put('/staff',[auth,[check('name','Name is required').not().isEmpty(),check('email','Email is required').not().isEmpty()]],async (req,res)=>{
   const errors = validationResult(req);
 
   if(!errors.isEmpty()) {
@@ -226,11 +226,11 @@ router.put('/staff',[auth,[check('name','Name is required').not().isEmpty()]],as
   }
 
   const {
-    name
+    name,email
   } = req.body;
 
   const newStaff = {
-    name
+    name,email
   }
   
   try {

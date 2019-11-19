@@ -5,9 +5,9 @@ const AppointmentSchema = new mongoose.Schema({
     type:mongoose.Schema.Types.ObjectId,
     ref:'user'
   },
-  client:{
-    type:mongoose.Schema.Types.ObjectId,
-    ref:'user'
+  doctor_email:{
+    type:String,
+    required:true
   },
   service:{
     type:String,
