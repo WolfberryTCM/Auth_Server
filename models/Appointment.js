@@ -5,6 +5,10 @@ const AppointmentSchema = new mongoose.Schema({
     type:mongoose.Schema.Types.ObjectId,
     ref:'user'
   },
+  patient_email:{
+    type:String,
+    required:true
+  },
   doctor_email:{
     type:String,
     required:true
