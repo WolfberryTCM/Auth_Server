@@ -5,24 +5,44 @@ const AppointmentSchema = new mongoose.Schema({
     type:mongoose.Schema.Types.ObjectId,
     ref:'user'
   },
-  patient_email:{
+  name: {
     type:String,
     required:true
   },
-  doctor_email:{
+  phone: {
     type:String,
     required:true
   },
-  service:{
+  email:{
+    type:String,
+    required:true
+  },
+  staff: {
+    type:String,
+    required:true
+  },
+  staff_email:{
+    type:String,
+    required:true
+  },
+  title:{
+    type:String,
+    required:true
+  },
+  price:{
     type:String,
     required:true
   },
   date: {
-    type:Date,
+    type:String,
+    required:true
+  },
+  time: {
+    type:String,
     required:true
   },
   duration:{
-    type:Number,
+    type:String,
     required:true
   },
   create_at: {

@@ -9,7 +9,7 @@ const Appointment = require('../../models/Appointment')
 // @route  POST api/appointment
 // @desc   Create an appointment
 // @access Private
-router.post('/',[auth,[check('doctor_email','Email is required').not().isEmpty(),check('service','Service is required').not().isEmpty(),check('date','Date is required'),check('duration','Duration is required')]],async (req,res)=>{
+router.post('/',[auth,[check('title','Service is required').not().isEmpty(),check('date','Date is required')]],async (req,res)=>{
 
   const errors = validationResult(req);
 
@@ -17,16 +17,21 @@ router.post('/',[auth,[check('doctor_email','Email is required').not().isEmpty()
     return res.status(400).json({errors:errors.array()})
   }
 
-  const {doctor_email,service,date,duration} = req.body;
+  const {name,phone,staff,staff_email,title,price,date,time,duration} = req.body;
 
   try {
     const user = await User.findById(req.user.id).select('-password');
 
     const newAppointment = new Appointment({
-      doctor_email,
-      patient_email:user.email,
-      service,
+      name,
+      phone,
+      staff,
+      staff_email,
+      email:user.email,
+      title,
+      price,
       date,
+      time,
       duration
     })
 

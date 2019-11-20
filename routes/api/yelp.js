@@ -7,9 +7,6 @@ const apiKey = 'Odg9uPbiFf1vP-5fszD3E6JqnDuepzcVvEpt2hM158dmRO2T2neXDj8qmUrdzksd
 
 const client = yelp.client(apiKey);
 
-const searchRequest = 
-  "gary-danko-san-francisco";
-
 // @route  POST api/yelp
 // @desc   yelp api Business Search
 // @access Public
