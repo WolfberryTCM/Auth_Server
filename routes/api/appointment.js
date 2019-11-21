@@ -20,7 +20,6 @@ router.post('/',[check('title','Service is required').not().isEmpty(),check('dat
   const {name,email,phone,staff,staff_email,title,price,date,time,duration} = req.body;
 
   try {
-
     const newAppointment = new Appointment({
       name,
       phone,
@@ -54,9 +53,9 @@ router.get('/',auth,async (req,res) => {
     const {isDoctor,email} = user;
     let appointments = [];
     if(isDoctor) {
-      appointments = await Appointment.find({doctor_email:email})
+      appointments = await Appointment.find({staff_email:email})
     } else {
-      appointments = await Appointment.find({patient_email:email})
+      appointments = await Appointment.find({email:email})
     }
 
     res.json(appointments);
