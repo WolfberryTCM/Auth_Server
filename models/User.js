@@ -6,7 +6,17 @@ const UserSchema = new mongoose.Schema({
     enum: ["local", "google"],
     required: true
   },
-  local: {},
+  local: {
+    email: {
+      type: String,
+      required: true,
+      unique: true
+    },
+    password: {
+      type: String,
+      required: true
+    }
+  },
   google: {
     id: {
       type: String
@@ -17,15 +27,6 @@ const UserSchema = new mongoose.Schema({
     }
   },
   name: {
-    type: String,
-    required: true
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  password: {
     type: String,
     required: true
   },

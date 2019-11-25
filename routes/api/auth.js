@@ -11,7 +11,9 @@ const jwt = require("jsonwebtoken");
 const config = require("config");
 const { check, validationResult } = require("express-validator");
 
-//
+// @route   POST api/auth
+// @desc    Login in with google oauth
+// @access  Public
 router
   .route("/google")
   .post(passport.authenticate("googleToken", { session: false }));
@@ -49,7 +51,7 @@ router.post(
 
     try {
       // See if user exists
-      let user = await User.findOne({ email });
+      let user = await User.findOne({ "local.email": email });
 
       if (!user) {
         return res
@@ -58,7 +60,7 @@ router.post(
       }
 
       // Check password match
-      const isMatch = await bcrypt.compare(password, user.password);
+      const isMatch = await bcrypt.compare(password, user.local.password);
 
       if (!isMatch) {
         return res

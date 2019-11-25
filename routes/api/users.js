@@ -36,7 +36,7 @@ router.post(
 
     try {
       // See if user exists
-      let user = await User.findOne({ email });
+      let user = await User.findOne({ "local.email": email });
 
       if (user) {
         return res
@@ -55,16 +55,18 @@ router.post(
       user = new User({
         method: "local",
         name,
-        email,
+        local: {
+          email,
+          password
+        },
         isDoctor,
-        avatar,
-        password
+        avatar
       });
 
       // Encrypt password
       const salt = await bcrypt.genSalt(10);
 
-      user.password = await bcrypt.hash(password, salt);
+      user.local.password = await bcrypt.hash(password, salt);
 
       await user.save();
 
