@@ -9,12 +9,10 @@ const UserSchema = new mongoose.Schema({
   local: {
     email: {
       type: String,
-      required: true,
       unique: true
     },
     password: {
-      type: String,
-      required: true
+      type: String
     }
   },
   google: {
@@ -23,6 +21,7 @@ const UserSchema = new mongoose.Schema({
     },
     email: {
       type: String,
+      unique: true,
       lowercase: true
     }
   },

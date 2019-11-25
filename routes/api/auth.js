@@ -11,12 +11,13 @@ const jwt = require("jsonwebtoken");
 const config = require("config");
 const { check, validationResult } = require("express-validator");
 
+const UsersController = require("../../controller/user");
+const passportGoogle = passport.authenticate("googleToken", { session: false });
+
 // @route   POST api/auth
 // @desc    Login in with google oauth
 // @access  Public
-router
-  .route("/google")
-  .post(passport.authenticate("googleToken", { session: false }));
+router.route("/google").post(passportGoogle, UsersController.googleOAuth);
 
 // @route  GET api/auth
 // @desc   Test route
