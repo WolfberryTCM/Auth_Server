@@ -1,9 +1,9 @@
-const express =  require('express');
-const connectDB = require('./config/db')
+const express = require("express");
+const connectDB = require("./config/db");
 // const path = require('path')
-const cors = require('cors')
+const cors = require("cors");
 
-const expressIp = require('express-ip')
+const expressIp = require("express-ip");
 
 const app = express();
 
@@ -11,26 +11,25 @@ const app = express();
 connectDB();
 
 // Init Middleware
-app.use(express.json({extended:false}))
+app.use(express.json({ extended: false }));
 
 // Init get ip info middleware
-app.use(expressIp().getIpInfoMiddleware)
+app.use(expressIp().getIpInfoMiddleware);
 
 // Fix CORS
 app.use(cors());
 
 // Define Routes
-app.use('/api/users',require('./routes/api/users'));
-app.use('/api/auth',require('./routes/api/auth'));
-app.use('/api/profile',require('./routes/api/profiles'));
-app.use('/api/posts',require('./routes/api/posts'));
-app.use('/api/yelp',require('./routes/api/yelp'));
-app.use('/api/appointment',require('./routes/api/appointment'))
+app.use("/api/users", require("./routes/api/users"));
+app.use("/api/auth", require("./routes/api/auth"));
+app.use("/api/profile", require("./routes/api/profiles"));
+app.use("/api/yelp", require("./routes/api/yelp"));
+app.use("/api/appointment", require("./routes/api/appointment"));
 
-app.get('/',(req,res) => {
+app.get("/", (req, res) => {
   const ipInfo = req.ipInfo;
   res.send(ipInfo);
-})
+});
 
 // Serve static assets in production
 // if(process.env.NODE_ENV === 'production') {
@@ -44,4 +43,4 @@ app.get('/',(req,res) => {
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT,()=>console.log(`Server started on port ${PORT}`))
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
